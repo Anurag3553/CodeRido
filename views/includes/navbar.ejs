@@ -1,0 +1,29 @@
+<div class="header">
+    <div class="left">
+        <h2>Code<span>Rido</span></h2>
+        <div class="line"></div>
+        <div class="nav">
+            <a href="/CodeRido/certificate" id="certi">Certified</a>
+            <a href="/CodeRido">Problem</a>
+            <a href="/CodeRido/interview">Interview</a>
+            <a href="/CodeRido/Couses">Course</a>
+        </div>
+    </div>
+    <div class="right">
+        <input type="search" placeholder="Search">
+        <div class="join">
+
+            <% if(!currUser) {%>
+                <button class="login"><a href="/CodeRido/Login"
+                        style="text-decoration: none ; color:  white;">Login</a></button>
+                <button class="crtact"><a href="/CodeRido/SignUp" style="color: green; text-decoration: none;">Create
+                        Account</a></button>
+            <%}%>
+            <% if(currUser){%>
+                <button class="crtact"><a href="/CodeRido/Logout"
+                    style="color: white; text-decoration: none; background-color: rgb(255, 0, 0);">LogOut</a></button>
+                <button><a href="">profile</a></button>
+             <%}%>
+        </div>
+    </div>
+</div>
