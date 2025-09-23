@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="Login_Page.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        :root {
+            --bg-main: #C6E5E2;
+            --bg-white: #FFFFFF;
+            --bg-dark-section: #133C3E;
+
+            --text-main: #000000;
+            --text-sub: #6C757D;
+            --text-white: #FFFFFF;
+
+            --btn-border-selected: #1DBF73;
+            --icon-bg: #E8F7F5;
+            --icon-bg-hover: #D4F0EC;
+
+            --text-button: #212529;
+            --login-border: #000000;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            height: 100vh;
+            background-color: #D4F0EC;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+
+        form {
+            height: 600px;
+            width: 450px;
+            /* border: 1px solid #133C3E; */
+            border-radius: 15px;
+            background-color: white;
+            background-image: linear-gradient(to bottom, rgb(27, 183, 27, 0.3), rgb(27, 183, 27, 0.2), white, white, white, white, white, white, white);
+            display: flex;
+            flex-direction: column;
+            /* justify-content: space-evenly; */
+            padding: 20px;
+            box-shadow: 3px 6px 15px black;
+        }
+
+        form .sign-in {
+            height: 10%;
+            width: 100%;
+            font-size: 2rem;
+            color: #133C3E;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            /* border: 1px solid black; */
+        }
+
+        form .logo {
+            height: 10%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            /* border: 1px solid black; */
+        }
+
+        form .rido {
+            height: 50px;
+            width: 150px;
+            /* border: 2px solid black; */
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            font-size: 1.1rem;
+            color: white;
+            background-color: #05951d;
+            border-radius: 10px;
+            box-shadow: 0 0 5px white inset;
+        }
+
+        form .text {
+            height: 10%;
+            width: 100%;
+            /* border: 1px solid black; */
+            display: flex;
+            align-items: center;
+            /* justify-content: space-evenly; */
+            flex-direction: column;
+        }
+
+        .text h2 {
+            font-size: 1.7rem;
+        }
+
+        form .social {
+            height: 10%;
+            width: 100%;
+            /* border: 2px solid black; */
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+
+
+        .social a {
+            height: 40px;
+            width: 130px;
+            background-color: white;
+            /* border: 1px solid black; */
+            border-radius: 10px;
+            align-items: center;
+            display: flex;
+            justify-content: space-evenly;
+            text-decoration: none;
+            font-size: 1.5rem;
+            color: black;
+            box-shadow: 2px 4px 5px black;
+            transition: 0.5s;
+        }
+
+        .social a:hover {
+            transform: scale(1.09);
+        }
+
+        form .or {
+            height: 5%;
+            width: 100%;
+            /* border: 1px solid black; */
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            color: gray;
+        }
+
+        form .or div {
+            width: 45%;
+            border: 0.5px solid gray;
+        }
+
+        form .data {
+            height: 35%;
+            width: 100%;
+            /* border: 1px solid black; */
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            /* justify-content: space-evenly; */
+        }
+
+        .data .ipu1 {
+            height: 25px;
+            width: 90%;
+            /* border: 1px solid gray; */
+            color: gray;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 0 3px black;
+            font-size: 1rem;
+            border: none;
+        }
+
+        .data .ipu1:hover {
+            border: 1px solid #1DBF73;
+        }
+
+        .data .ipu2:hover {
+            border: 1px solid #1DBF73;
+        }
+
+        .data .ipu2 {
+            height: 25px;
+            width: 90%;
+            /* border: 1px solid gray; */
+            color: gray;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            background-color: white;
+            box-shadow: 0 0 3px black;
+            font-size: 1rem;
+            border: none;
+        }
+
+        label {
+            margin-bottom: 5px;
+        }
+
+        .data .frg {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+
+        .data .frg a {
+            margin-right: 20px;
+        }
+
+        form .footer {
+            height: 20%;
+            width: 100%;
+            border-top: 1px solid gray;
+            display: flex;
+            flex-direction: column;
+            /* justify-content: space-evenly; */
+        }
+
+        .footer .sign-bt {
+            height: 50%;
+            width: 100%;
+            /* border: 1px solid black; */
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+
+        .sign-bt button {
+            height: 50px;
+            width: 90%;
+            background-image: linear-gradient(to bottom, #24d642, #1DBF73);
+            border-radius: 10px;
+            border: none;
+            box-shadow: 0 0 5px white inset;
+            font-size: 1.3rem;
+            color: white;
+        }
+
+        .footer .create {
+            height: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            font-size: 14px;
+        }
+
+        .create a {
+            text-decoration: none;
+            color: #05951d;
+        }
+
+        .create p {
+            margin-top: 10px;
+
+        }
+
+        .sign-bt:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+
+<body>
+    <form action="/CodeRido/Login" method="post">
+        <%= success%>
+        <div class="sign-in">
+            <h3>Sign-in</h3>
+        </div>
+        <div class="logo">
+            <div class="rido">
+                <h2>CodeRido</h2>
+            </div>
+        </div>
+        <div class="text">
+            <h2>Welcome back</h2>
+            <p><i>Please Enter your details to sign in</i></p>
+        </div>
+        <div class="social">
+            <a href=""><i class="fa-brands fa-google"></i></a>
+            <a href=""><i class="fa-brands fa-apple"></i></a>
+            <a href=""><i class="fa-brands fa-facebook"></i></a>
+        </div>
+
+        <div class="or">
+            <div></div>
+            <h4>or</h4>
+            <div></div>
+        </div>
+        <div class="data">
+            <label for="emailid">Username</label>
+            <input class="ipu1" type="text" name="username" id="username" placeholder="Enter Your Email">
+            <label for="pass">Password</label>
+            <input class="ipu2" type="password" name="password" id="password" placeholder="Password">
+            <div class="frg">
+                <div class="remm">
+                    <input type="checkbox" id="rem">
+                    <label for="rem">Remember</label>
+                </div>
+                <a href="#">Forgot Password?</a>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="sign-bt">
+                <button class="signin">Sign in</button>
+            </div>
+            <div class="create">
+                <p>Don't have an account? <a class="createac" href="/CodeRido/SignUp">Create account</a></p>
+            </div>
+        </div>
+    </form>
+</body>
+
+</html>
