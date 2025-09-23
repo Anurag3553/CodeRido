@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interview Review</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .review-box {
+            text-align: left;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .review-box h2 {
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        .review-section {
+            margin-bottom: 20px;
+        }
+        .review-section h3 {
+            color: #333;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+        }
+        .review-section ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+        .review-section li {
+            margin-bottom: 5px;
+        }
+        #overall-feedback {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        /* Add a style for the home button */
+        .home-btn {
+            display: inline-block;
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container review-container">
+        <h1>Interview Review</h1>
+        <div class="review-box">
+            <div id="review-content">
+                <p>Loading review...</p>
+            </div>
+        </div>
+        <a href="/CodeRido/interview" class="home-btn">Return to Home</a>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const reviewContentDiv = document.getElementById('review-content');
+            const interviewId = window.location.pathname.split('/CodeRido/interview').pop();
+            
+            try {
+                // Fetch the review from the server using the API endpoint
+                const response = await fetch('/api/finish-interview', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ interviewId })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to fetch review');
+                }
+                
+                const result = await response.json();
+                const reviewText = result.review;
+
+                // Simple parsing to display a better-formatted review
+                const sections = reviewText.split(/\*\*(.*?):\*\*/g).filter(s => s.trim() !== '');
+
+                let htmlContent = '';
+                if (sections.length > 0) {
+                    // First part is usually the overall feedback
+                    htmlContent += `<p id="overall-feedback">${sections[0].trim()}</p>`;
+
+                    for (let i = 1; i < sections.length; i += 2) {
+                        const title = sections[i].trim();
+                        const content = sections[i + 1].trim();
+
+                        htmlContent += `<div class="review-section"><h3>${title}</h3>`;
+                        
+                        if (content.includes('\n- ')) {
+                            // It's a list
+                            const listItems = content.split('\n- ').map(item => `<li>${item.trim()}</li>`).join('');
+                            htmlContent += `<ul>${listItems}</ul>`;
+                        } else {
+                            // It's a paragraph
+                            htmlContent += `<p>${content}</p>`;
+                        }
+                        htmlContent += `</div>`;
+                    }
+                } else {
+                    // Fallback if parsing fails
+                    htmlContent = `<h3>Review</h3><p>${reviewText}</p>`;
+                }
+
+                reviewContentDiv.innerHTML = htmlContent;
+
+            } catch (error) {
+                console.error("Error fetching review:", error);
+                reviewContentDiv.innerHTML = '<p style="color:red;">Error loading review. Please try again.</p>';
+            }
+        });
+    </script>
+</body>
+</html>

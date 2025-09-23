@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= session.certificationName %> Quiz</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            text-align: left;
+        }
+        h2 {
+            color: #1a4d85;
+        }
+        pre {
+            background-color: #f0f0f0;
+            padding: 15px;
+            border-radius: 5px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        input[type="text"] {
+            width: 95%;
+            padding: 12px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .mcq-option {
+            display: block;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .mcq-option:hover {
+            background-color: #e6eef5;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 14px 20px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            float: right;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2><%= session.certificationName %> Quiz</h2>
+        <div id="question-container">
+            </div>
+        <button id="next-btn" onclick="submitAnswer()">Next Question</button>
+    </div>
+
+    <script>
+        let quizSession = <%- JSON.stringify(session) %>;
+
+        const questionContainer = document.getElementById('question-container');
+        const nextButton = document.getElementById('next-btn');
+
+        function displayQuestion() {
+            if (quizSession.currentQuestionIndex >= quizSession.questions.length) {
+                return;
+            }
+
+            const currentQuestion = quizSession.questions[quizSession.currentQuestionIndex];
+            questionContainer.innerHTML = '';
+            
+            const questionElement = document.createElement('p');
+            questionElement.innerHTML = `<strong>Question ${quizSession.currentQuestionIndex + 1}:</strong><br>${currentQuestion.question}`;
+            questionContainer.appendChild(questionElement);
+
+            if (currentQuestion.type === 'mcq') {
+                const mcqWrapper = document.createElement('div');
+                mcqWrapper.id = 'mcq-options';
+                currentQuestion.options.forEach(option => {
+                    const optionElement = document.createElement('div');
+                    optionElement.classList.add('mcq-option');
+                    optionElement.textContent = option;
+                    optionElement.onclick = () => {
+                        const allOptions = document.querySelectorAll('.mcq-option');
+                        allOptions.forEach(opt => opt.style.backgroundColor = '#f9f9f9');
+                        optionElement.style.backgroundColor = '#d1e0f0';
+                        document.getElementById('user-answer').value = option;
+                    };
+                    mcqWrapper.appendChild(optionElement);
+                });
+                questionContainer.appendChild(mcqWrapper);
+                const hiddenInput = document.createElement('input');
+                hiddenInput.type = 'hidden';
+                hiddenInput.id = 'user-answer';
+                questionContainer.appendChild(hiddenInput);
+            } else {
+                const answerInput = document.createElement('input');
+                answerInput.type = 'text';
+                answerInput.id = 'user-answer';
+                answerInput.placeholder = 'Type your answer here...';
+                questionContainer.appendChild(answerInput);
+            }
+        }
+
+        async function submitAnswer() {
+            const userAnswer = document.getElementById('user-answer').value;
+            if (!userAnswer) {
+                alert("Please provide an answer.");
+                return;
+            }
+
+            const response = await fetch('/submit-answer', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    session: quizSession,
+                    userAnswer: userAnswer
+                })
+            });
+
+            const result = await response.json();
+
+            if (result.status === 'next') {
+                quizSession = result.session;
+                displayQuestion();
+            } else if (result.status === 'passed') {
+                window.location.href = `/certificate?userName=${encodeURIComponent(result.userName)}&certificationName=${encodeURIComponent(result.certificationName)}`;
+            } else {
+                alert(`Sorry, you failed the quiz. You scored ${result.score} out of 10. You need at least 6 to pass.`);
+                window.location.href = '/';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', displayQuestion);
+    </script>
+</body>
+</html>

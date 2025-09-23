@@ -1,0 +1,2177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LearnHub - Online Learning Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #4ade80 0%, #22c55e 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        .header {
+            height: 70px;
+            width: 100%;
+            /* border: 1px solid black; */
+            display: flex;
+            align-items: center;
+            /* justify-content: space-between; */
+            background-color: rgba(253, 253, 253, 0.3);
+            box-shadow: 0 0 15px #0a8f20;
+            /* position: fixed; */
+            /* top: 0; */
+            /* z-index: 1000; */
+        }
+
+        .header .left {
+            width: 60%;
+            display: flex;
+            align-items: center;
+            /* justify-content: space-evenly; */
+            margin-left: 20px;
+        }
+
+        .left h2 {
+            font-size: 1.4rem;
+        }
+
+        .left span {
+            color: #0a8f20;
+        }
+
+        .left .line {
+            height: 15px;
+            width: 15px;
+            border: 1px solid black;
+            background-color: black;
+            margin-left: 5px;
+            rotate: 45deg;
+        }
+
+
+        .left .nav {
+            height: 55px;
+            width: 70%;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            margin-left: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            /* border: 1px solid black; */
+            color: black;
+
+        }
+
+        .nav a {
+            color: black;
+            text-decoration: none;
+            /* font-weight: 700; */
+            font-size: 15px;
+            /* border: 1px solid black; */
+            height: 55px;
+            width: 80px;
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            transition: 0.5s;
+        }
+
+        .nav a:hover {
+            border-bottom: 5px solid #0a8f20;
+        }
+
+        .header .right {
+            width: 40%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-right: 20px;
+        }
+
+        .right input {
+            height: 35px;
+            width: 300px;
+            padding: 10px;
+            border: 1px solid #0a8f20;
+            border-radius: 5px;
+        }
+
+        .right .login {
+            height: 40px;
+            width: 100px;
+            border-radius: 5px;
+            margin-right: 5px;
+            border: 2px solid silver;
+            background-color: black;
+            color: white;
+            font-size: 16px;
+        }
+
+        .right .login:hover {
+            background-color: rgb(174, 224, 174);
+            color: #0a8f20;
+            border: 2px solid #0a8f20;
+            font-weight: 600;
+        }
+
+        .right .crtact {
+            height: 40px;
+            width: 150px;
+            border-radius: 5px;
+            background-image: linear-gradient(to bottom, #24d642, #1DBF73);
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+        }
+
+        .crtact:hover {
+            opacity: 0.8;
+        }
+
+        /* GAP */
+        .gap{
+            height: 50px;
+            width: 100%;
+            background-color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            text-align: center;
+            color: white;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-content h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #f59e0b, #d97706);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+            animation: pulse 2s infinite;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.6);
+        }
+
+        /* Floating Animation Cards */
+        .hero-animation {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+        }
+
+        .floating-card {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .card-1 {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .card-2 {
+            top: 60%;
+            right: 15%;
+            animation-delay: 2s;
+        }
+
+        .card-3 {
+            bottom: 30%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        /* Courses Section */
+        .courses-section {
+            padding: 100px 0;
+            background: white;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #333;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #22c55e, #16a34a);
+            border-radius: 2px;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        /* Course Cards */
+        .course-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+        }
+
+        .course-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .course-card:hover::before {
+            left: 100%;
+        }
+
+        .course-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            border-color: #22c55e;
+        }
+
+        .course-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(45deg, #22c55e, #16a34a);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .course-card:hover .course-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .course-icon i {
+            font-size: 2rem;
+            color: white;
+        }
+
+        .course-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .course-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .course-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .course-stats span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .course-buttons {
+            display: flex;
+            gap: 10px;
+            flex-direction: column;
+        }
+
+        .course-btn {
+            background: linear-gradient(45deg, #22c55e, #16a34a);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            width: 100%;
+        }
+
+        .start-course-btn {
+            background: linear-gradient(45deg, #f59e0b, #d97706);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            width: 100%;
+        }
+
+        .course-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(34, 197, 94, 0.4);
+        }
+
+        .start-course-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(245, 158, 11, 0.4);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            animation: slideUp 0.3s ease;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-header {
+            background: linear-gradient(45deg, #22c55e, #16a34a);
+            color: white;
+            padding: 2rem;
+            border-radius: 20px 20px 0 0;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .course-icon-large {
+            width: 80px;
+            height: 80px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .course-icon-large i {
+            font-size: 2.5rem;
+        }
+
+        .course-info h2 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .course-info p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        .close {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .close:hover {
+            transform: scale(1.2);
+            opacity: 0.8;
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .course-details {
+            margin-bottom: 2rem;
+        }
+
+        .detail-section {
+            margin-bottom: 2rem;
+        }
+
+        .detail-section h3 {
+            color: #333;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+        }
+
+        .detail-section h3 i {
+            color: #22c55e;
+        }
+
+        .detail-section ul {
+            list-style: none;
+            padding-left: 1rem;
+        }
+
+        .detail-section li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .detail-section li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #22c55e;
+            font-weight: bold;
+        }
+
+        .modal .start-course-btn {
+            background: linear-gradient(45deg, #f59e0b, #d97706);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            font-weight: 600;
+        }
+
+        .modal .start-course-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(245, 158, 11, 0.4);
+        }
+
+        /* Video Section Styles */
+        .video-section {
+            background: #f8f9fa;
+            padding: 2rem 0;
+            margin-top: 2rem;
+            border-top: 3px solid #22c55e;
+        }
+
+        .video-header {
+            background: white;
+            padding: 1.5rem 2rem;
+            border-radius: 15px 15px 0 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 0;
+        }
+
+        .video-header h2 {
+            color: #333;
+            font-size: 1.8rem;
+            margin: 0;
+            background: linear-gradient(45deg, #22c55e, #16a34a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .close-video-btn {
+            background: linear-gradient(45deg, #ef4444, #dc2626);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+        }
+
+        .close-video-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(239, 68, 68, 0.4);
+        }
+
+        .video-container {
+            display: flex;
+            background: white;
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            min-height: 500px;
+        }
+
+        .video-sidebar {
+            width: 300px;
+            background: white;
+            border-right: 1px solid #eee;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+
+        .video-sidebar h3 {
+            margin-bottom: 1rem;
+            color: #333;
+            font-size: 1.2rem;
+        }
+
+        .video-sidebar ul {
+            list-style: none;
+        }
+
+        .video-sidebar li {
+            padding: 0.8rem;
+            margin-bottom: 0.5rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .video-sidebar li:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .video-sidebar li.active {
+            background: linear-gradient(45deg, #22c55e, #16a34a);
+            color: white;
+            border-left-color: #f59e0b;
+        }
+
+        .video-main {
+            flex: 1;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .video-player {
+            background: #000;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            position: relative;
+            aspect-ratio: 16/9;
+            overflow: hidden;
+        }
+
+        .video-controls {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .video-player:hover .video-controls {
+            opacity: 1;
+        }
+
+        .control-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .progress-bar {
+            flex: 1;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 2px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .progress {
+            height: 100%;
+            background: linear-gradient(45deg, #22c55e, #16a34a);
+            border-radius: 2px;
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+
+        .time-display {
+            color: white;
+            font-size: 0.9rem;
+            min-width: 100px;
+            text-align: center;
+        }
+
+        .video-placeholder {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+        }
+
+        .video-placeholder i {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.7;
+        }
+
+        .video-placeholder h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .video-placeholder p {
+            opacity: 0.8;
+        }
+
+        #videoPlayer {
+            width: 100%;
+            height: 100%;
+            border-radius: 10px;
+        }
+
+        .video-info {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .video-info h3 {
+            color: #333;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .video-info p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+            }
+
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes bounce {
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-10px);
+            }
+
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header .container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav {
+                gap: 1rem;
+            }
+
+            .hero-content h2 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .courses-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+            }
+
+            .modal-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .video-container {
+                flex-direction: column;
+                min-height: auto;
+            }
+
+            .video-sidebar {
+                width: 100%;
+                height: 200px;
+                border-right: none;
+                border-bottom: 1px solid #eee;
+            }
+
+            .video-main {
+                min-height: 300px;
+            }
+
+            .video-header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .video-header h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h2 {
+                font-size: 2rem;
+            }
+
+            .course-card {
+                padding: 1.5rem;
+            }
+
+            .modal-body {
+                padding: 1rem;
+            }
+
+            .video-header {
+                padding: 1rem;
+            }
+
+            .video-main {
+                padding: 0.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="left">
+            <h2>Code<span>Rido</span></h2>
+            <div class="line"></div>
+            <div class="nav">
+                <a href="/CodeRido/certificate" id="certi">Certified</a>
+                <a href="/CodeRido">Problem</a>
+                <a href="/CodeRido/interview">Interview</a>
+                <a href="/CodeRido/Couses">Course</a>
+            </div>
+        </div>
+        <div class="right">
+            <input type="search" placeholder="Search">
+            <div class="join">
+                <button class="login">Login</button>
+                <button class="crtact">Create Account</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="gap">
+
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Master New Skills with Expert-Led Courses</h2>
+            <p>Join thousands of students learning cutting-edge technologies</p>
+            <button class="cta-button">Start Learning Today</button>
+        </div>
+        <div class="hero-animation">
+            <div class="floating-card card-1"></div>
+            <div class="floating-card card-2"></div>
+            <div class="floating-card card-3"></div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section class="courses-section" id="courses">
+        <div class="container">
+            <h2 class="section-title">Our Courses</h2>
+            <div class="courses-grid">
+                <!-- Full Stack Development -->
+                <div class="course-card" data-course="fullstack">
+                    <div class="course-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Full Stack Development</h3>
+                    <p>Master both frontend and backend technologies</p>
+                    <div class="course-stats">
+                        <span><i class="fas fa-play-circle"></i> 50+ Videos</span>
+                        <span><i class="fas fa-clock"></i> 40 Hours</span>
+                    </div>
+                    <div class="course-buttons">
+                        <button class="course-btn">View Details</button>
+                        <button class="start-course-btn" data-course="fullstack">Start Course</button>
+                    </div>
+                </div>
+
+                <!-- MERN Stack -->
+                <div class="course-card" data-course="mern">
+                    <div class="course-icon">
+                        <i class="fab fa-node-js"></i>
+                    </div>
+                    <h3>MERN Stack Course</h3>
+                    <p>Build modern web applications with MongoDB, Express, React, Node.js</p>
+                    <div class="course-stats">
+                        <span><i class="fas fa-play-circle"></i> 45+ Videos</span>
+                        <span><i class="fas fa-clock"></i> 35 Hours</span>
+                    </div>
+                    <div class="course-buttons">
+                        <button class="course-btn">View Details</button>
+                        <button class="start-course-btn" data-course="mern">Start Course</button>
+                    </div>
+                </div>
+
+                <!-- DSA Course -->
+                <div class="course-card" data-course="dsa">
+                    <div class="course-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Data Structures & Algorithms</h3>
+                    <p>Master problem-solving with efficient algorithms</p>
+                    <div class="course-stats">
+                        <span><i class="fas fa-play-circle"></i> 60+ Videos</span>
+                        <span><i class="fas fa-clock"></i> 50 Hours</span>
+                    </div>
+                    <div class="course-buttons">
+                        <button class="course-btn">View Details</button>
+                        <button class="start-course-btn" data-course="dsa">Start Course</button>
+                    </div>
+                </div>
+
+                <!-- Aptitude Course -->
+                <div class="course-card" data-course="aptitude">
+                    <div class="course-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3>Aptitude Course</h3>
+                    <p>Excel in quantitative and logical reasoning</p>
+                    <div class="course-stats">
+                        <span><i class="fas fa-play-circle"></i> 30+ Videos</span>
+                        <span><i class="fas fa-clock"></i> 25 Hours</span>
+                    </div>
+                    <div class="course-buttons">
+                        <button class="course-btn">View Details</button>
+                        <button class="start-course-btn" data-course="aptitude">Start Course</button>
+                    </div>
+                </div>
+
+                <!-- Bootstrap -->
+                <div class="course-card" data-course="bootstrap">
+                    <div class="course-icon">
+                        <i class="fab fa-bootstrap"></i>
+                    </div>
+                    <h3>Bootstrap Framework</h3>
+                    <p>Create responsive websites with Bootstrap</p>
+                    <div class="course-stats">
+                        <span><i class="fas fa-play-circle"></i> 25+ Videos</span>
+                        <span><i class="fas fa-clock"></i> 20 Hours</span>
+                    </div>
+                    <div class="course-buttons">
+                        <button class="course-btn">View Details</button>
+                        <button class="start-course-btn" data-course="bootstrap">Start Course</button>
+                    </div>
+                </div>
+
+                <!-- Tailwind CSS -->
+                <div class="course-card" data-course="tailwind">
+                    <div class="course-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Tailwind CSS</h3>
+                    <p>Utility-first CSS framework for rapid UI development</p>
+                    <div class="course-stats">
+                        <span><i class="fas fa-play-circle"></i> 20+ Videos</span>
+                        <span><i class="fas fa-clock"></i> 15 Hours</span>
+                    </div>
+                    <div class="course-buttons">
+                        <button class="course-btn">View Details</button>
+                        <button class="start-course-btn" data-course="tailwind">Start Course</button>
+                    </div>
+                </div>
+
+                <!-- React -->
+                <div class="course-card" data-course="react">
+                    <div class="course-icon">
+                        <i class="fab fa-react"></i>
+                    </div>
+                    <h3>React Development</h3>
+                    <p>Build dynamic user interfaces with React</p>
+                    <div class="course-stats">
+                        <span><i class="fas fa-play-circle"></i> 40+ Videos</span>
+                        <span><i class="fas fa-clock"></i> 30 Hours</span>
+                    </div>
+                    <div class="course-buttons">
+                        <button class="course-btn">View Details</button>
+                        <button class="start-course-btn" data-course="react">Start Course</button>
+                    </div>
+                </div>
+
+                <!-- Machine Learning -->
+                <div class="course-card" data-course="ml">
+                    <div class="course-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>Machine Learning</h3>
+                    <p>Learn AI and machine learning algorithms</p>
+                    <div class="course-stats">
+                        <span><i class="fas fa-play-circle"></i> 55+ Videos</span>
+                        <span><i class="fas fa-clock"></i> 45 Hours</span>
+                    </div>
+                    <div class="course-buttons">
+                        <button class="course-btn">View Details</button>
+                        <button class="start-course-btn" data-course="ml">Start Course</button>
+                    </div>
+                </div>
+
+                <!-- Data Science -->
+                <div class="course-card" data-course="datascience">
+                    <div class="course-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3>Data Science</h3>
+                    <p>Extract insights from data using scientific methods</p>
+                    <div class="course-stats">
+                        <span><i class="fas fa-play-circle"></i> 50+ Videos</span>
+                        <span><i class="fas fa-clock"></i> 40 Hours</span>
+                    </div>
+                    <div class="course-buttons">
+                        <button class="course-btn">View Details</button>
+                        <button class="start-course-btn" data-course="datascience">Start Course</button>
+                    </div>
+                </div>
+
+                <!-- Programming Languages -->
+                <div class="course-card" data-course="programming">
+                    <div class="course-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Programming Languages</h3>
+                    <p>Master Java, Python, C++, C, Kotlin, SQL</p>
+                    <div class="course-stats">
+                        <span><i class="fas fa-play-circle"></i> 100+ Videos</span>
+                        <span><i class="fas fa-clock"></i> 80 Hours</span>
+                    </div>
+                    <div class="course-buttons">
+                        <button class="course-btn">View Details</button>
+                        <button class="start-course-btn" data-course="programming">Start Course</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Course Details Modal -->
+    <div id="courseModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-header">
+                <div class="course-icon-large">
+                    <i id="modalIcon" class="fas fa-code"></i>
+                </div>
+                <div class="course-info">
+                    <h2 id="modalTitle">Course Title</h2>
+                    <p id="modalDescription">Course description</p>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="course-details">
+                    <div class="detail-section">
+                        <h3><i class="fas fa-play-circle"></i> Lectures</h3>
+                        <ul id="lecturesList">
+                            <!-- Lectures will be populated by JavaScript -->
+                        </ul>
+                    </div>
+                    <div class="detail-section">
+                        <h3><i class="fas fa-file-pdf"></i> PDF Notes</h3>
+                        <ul id="notesList">
+                            <!-- Notes will be populated by JavaScript -->
+                        </ul>
+                    </div>
+                    <div class="detail-section">
+                        <h3><i class="fas fa-question-circle"></i> Practice Questions</h3>
+                        <ul id="questionsList">
+                            <!-- Questions will be populated by JavaScript -->
+                        </ul>
+                    </div>
+                </div>
+                <button id="startCourseBtn" class="start-course-btn">Start Course</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Player Section -->
+    <div id="videoSection" class="video-section" style="display: none;">
+        <div class="container">
+            <div class="video-header">
+                <button id="closeVideoBtn" class="close-video-btn">
+                    <i class="fas fa-times"></i> Close Video
+                </button>
+                <h2 id="currentCourseTitle">Course Title</h2>
+            </div>
+            <div class="video-container">
+                <div class="video-sidebar">
+                    <h3>Course Lectures</h3>
+                    <ul id="lectureList">
+                        <!-- Lectures will be populated by JavaScript -->
+                    </ul>
+                </div>
+                <div class="video-main">
+                    <div class="video-player">
+                        <video id="videoPlayer" controls>
+                            <source src="" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-controls">
+                            <button id="playPauseBtn" class="control-btn">
+                                <i class="fas fa-play"></i>
+                            </button>
+                            <div class="progress-bar">
+                                <div class="progress"></div>
+                            </div>
+                            <span class="time-display">00:00 / 00:00</span>
+                            <button id="fullscreenBtn" class="control-btn">
+                                <i class="fas fa-expand"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="video-info">
+                        <h3 id="currentLectureTitle">No lecture selected</h3>
+                        <p id="currentLectureDescription">Please select a lecture from the sidebar</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Video URLs for each lecture (placeholder URLs - replace with actual video URLs)
+        const videoUrls = {
+            fullstack: [
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_2mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_5mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_10mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_20mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_30mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_40mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_50mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_60mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_70mb.mp4'
+            ],
+            mern: [
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_2mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_5mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_10mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_20mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_30mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_40mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_50mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_60mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_70mb.mp4'
+            ],
+            dsa: [
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_2mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_5mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_10mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_20mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_30mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_40mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_50mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_60mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_70mb.mp4'
+            ],
+            aptitude: [
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_2mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_5mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_10mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_20mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_30mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_40mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_50mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_60mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_70mb.mp4'
+            ],
+            bootstrap: [
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_2mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_5mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_10mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_20mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_30mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_40mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_50mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_60mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_70mb.mp4'
+            ],
+            tailwind: [
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_2mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_5mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_10mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_20mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_30mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_40mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_50mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_60mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_70mb.mp4'
+            ],
+            react: [
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_2mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_5mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_10mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_20mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_30mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_40mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_50mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_60mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_70mb.mp4'
+            ],
+            ml: [
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_2mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_5mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_10mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_20mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_30mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_40mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_50mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_60mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_70mb.mp4'
+            ],
+            datascience: [
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_2mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_5mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_10mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_20mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_30mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_40mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_50mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_60mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_70mb.mp4'
+            ],
+            programming: [
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_2mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_5mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_10mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_20mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_30mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_40mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_50mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_60mb.mp4',
+                'https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_70mb.mp4'
+            ]
+        };
+
+        // Course data with lectures, notes, and practice questions
+        const courseData = {
+            fullstack: {
+                title: "Full Stack Development",
+                description: "Master both frontend and backend technologies to build complete web applications",
+                icon: "fas fa-code",
+                lectures: [
+                    "Introduction to Full Stack Development",
+                    "HTML5 Fundamentals",
+                    "CSS3 and Responsive Design",
+                    "JavaScript ES6+",
+                    "React.js Basics",
+                    "Node.js and Express",
+                    "MongoDB Database",
+                    "RESTful APIs",
+                    "Authentication & Security",
+                    "Deployment Strategies"
+                ],
+                notes: [
+                    "Full Stack Development Guide.pdf",
+                    "HTML5 Complete Reference.pdf",
+                    "CSS3 Advanced Techniques.pdf",
+                    "JavaScript ES6+ Handbook.pdf",
+                    "React.js Documentation.pdf",
+                    "Node.js Best Practices.pdf",
+                    "MongoDB Tutorial.pdf",
+                    "API Design Patterns.pdf",
+                    "Web Security Fundamentals.pdf",
+                    "Deployment Guide.pdf"
+                ],
+                questions: [
+                    "What is the difference between frontend and backend?",
+                    "Explain the MVC architecture pattern",
+                    "How do you implement authentication in web apps?",
+                    "What are RESTful APIs and their principles?",
+                    "Describe the React component lifecycle",
+                    "How do you handle state management in React?",
+                    "Explain database relationships and normalization",
+                    "What are the best practices for API security?",
+                    "How do you optimize web application performance?",
+                    "Describe the deployment process for web applications"
+                ]
+            },
+            mern: {
+                title: "MERN Stack Course",
+                description: "Build modern web applications with MongoDB, Express, React, and Node.js",
+                icon: "fab fa-node-js",
+                lectures: [
+                    "Introduction to MERN Stack",
+                    "MongoDB Setup and Configuration",
+                    "Express.js Framework",
+                    "React Components and Props",
+                    "State Management with Redux",
+                    "MongoDB CRUD Operations",
+                    "Express Routes and Middleware",
+                    "React Hooks and Context",
+                    "Authentication with JWT",
+                    "Full Stack Project Development"
+                ],
+                notes: [
+                    "MERN Stack Overview.pdf",
+                    "MongoDB Complete Guide.pdf",
+                    "Express.js Documentation.pdf",
+                    "React Components Guide.pdf",
+                    "Redux State Management.pdf",
+                    "MongoDB CRUD Operations.pdf",
+                    "Express Middleware Guide.pdf",
+                    "React Hooks Tutorial.pdf",
+                    "JWT Authentication Guide.pdf",
+                    "MERN Project Templates.pdf"
+                ],
+                questions: [
+                    "What are the advantages of using MERN stack?",
+                    "How do you connect MongoDB with Express.js?",
+                    "Explain React component lifecycle methods",
+                    "What is Redux and how does it work?",
+                    "How do you implement CRUD operations in MongoDB?",
+                    "Describe Express.js middleware functions",
+                    "What are React Hooks and their benefits?",
+                    "How do you implement JWT authentication?",
+                    "Explain the data flow in MERN applications",
+                    "What are the best practices for MERN development?"
+                ]
+            },
+            dsa: {
+                title: "Data Structures & Algorithms",
+                description: "Master problem-solving with efficient algorithms and data structures",
+                icon: "fas fa-brain",
+                lectures: [
+                    "Introduction to Algorithms",
+                    "Arrays and Strings",
+                    "Linked Lists",
+                    "Stacks and Queues",
+                    "Trees and Binary Trees",
+                    "Graphs and Graph Algorithms",
+                    "Sorting Algorithms",
+                    "Searching Algorithms",
+                    "Dynamic Programming",
+                    "Complexity Analysis"
+                ],
+                notes: [
+                    "Algorithm Fundamentals.pdf",
+                    "Array and String Problems.pdf",
+                    "Linked List Implementation.pdf",
+                    "Stack and Queue Operations.pdf",
+                    "Tree Data Structures.pdf",
+                    "Graph Algorithms Guide.pdf",
+                    "Sorting Techniques.pdf",
+                    "Search Algorithms.pdf",
+                    "Dynamic Programming.pdf",
+                    "Time and Space Complexity.pdf"
+                ],
+                questions: [
+                    "What is Big O notation and why is it important?",
+                    "Explain different types of sorting algorithms",
+                    "How do you implement a binary search tree?",
+                    "What is the difference between BFS and DFS?",
+                    "Describe dynamic programming approach",
+                    "How do you detect cycles in a graph?",
+                    "Explain hash table implementation",
+                    "What are the advantages of linked lists over arrays?",
+                    "How do you solve the knapsack problem?",
+                    "Describe the merge sort algorithm"
+                ]
+            },
+            aptitude: {
+                title: "Aptitude Course",
+                description: "Excel in quantitative and logical reasoning for competitive exams",
+                icon: "fas fa-calculator",
+                lectures: [
+                    "Number System Basics",
+                    "Percentage and Profit Loss",
+                    "Time and Work Problems",
+                    "Time Speed and Distance",
+                    "Permutation and Combination",
+                    "Probability Concepts",
+                    "Logical Reasoning",
+                    "Verbal Reasoning",
+                    "Analytical Reasoning",
+                    "Practice Tests and Mock Exams"
+                ],
+                notes: [
+                    "Number System Guide.pdf",
+                    "Percentage Calculations.pdf",
+                    "Time and Work Problems.pdf",
+                    "Speed and Distance Formulas.pdf",
+                    "Permutation and Combination.pdf",
+                    "Probability Theory.pdf",
+                    "Logical Reasoning Guide.pdf",
+                    "Verbal Reasoning Tips.pdf",
+                    "Analytical Reasoning.pdf",
+                    "Mock Test Papers.pdf"
+                ],
+                questions: [
+                    "How do you calculate compound interest?",
+                    "Explain the concept of work efficiency",
+                    "What is the formula for relative speed?",
+                    "How do you solve permutation problems?",
+                    "Explain probability of independent events",
+                    "What are syllogism patterns?",
+                    "How do you solve blood relation problems?",
+                    "Explain coding-decoding techniques",
+                    "What are the types of logical puzzles?",
+                    "How do you approach analytical reasoning?"
+                ]
+            },
+            bootstrap: {
+                title: "Bootstrap Framework",
+                description: "Create responsive websites quickly with Bootstrap components",
+                icon: "fab fa-bootstrap",
+                lectures: [
+                    "Bootstrap Introduction",
+                    "Grid System and Layout",
+                    "Typography and Utilities",
+                    "Components Overview",
+                    "Forms and Input Groups",
+                    "Navigation Components",
+                    "Cards and Media Objects",
+                    "Modals and Popovers",
+                    "Bootstrap JavaScript",
+                    "Customization and Themes"
+                ],
+                notes: [
+                    "Bootstrap Getting Started.pdf",
+                    "Grid System Guide.pdf",
+                    "Typography Reference.pdf",
+                    "Component Library.pdf",
+                    "Form Components.pdf",
+                    "Navigation Guide.pdf",
+                    "Card Components.pdf",
+                    "JavaScript Components.pdf",
+                    "Customization Guide.pdf",
+                    "Theme Development.pdf"
+                ],
+                questions: [
+                    "What is Bootstrap and its advantages?",
+                    "Explain the Bootstrap grid system",
+                    "How do you create responsive layouts?",
+                    "What are Bootstrap utility classes?",
+                    "How do you customize Bootstrap themes?",
+                    "Explain Bootstrap component structure",
+                    "What are Bootstrap breakpoints?",
+                    "How do you use Bootstrap JavaScript?",
+                    "What are the best practices for Bootstrap?",
+                    "How do you optimize Bootstrap performance?"
+                ]
+            },
+            tailwind: {
+                title: "Tailwind CSS",
+                description: "Utility-first CSS framework for rapid UI development",
+                icon: "fas fa-palette",
+                lectures: [
+                    "Tailwind CSS Introduction",
+                    "Utility Classes Overview",
+                    "Responsive Design",
+                    "Color and Typography",
+                    "Spacing and Sizing",
+                    "Flexbox and Grid",
+                    "Components and Patterns",
+                    "Custom Configuration",
+                    "Performance Optimization",
+                    "Advanced Techniques"
+                ],
+                notes: [
+                    "Tailwind CSS Guide.pdf",
+                    "Utility Classes Reference.pdf",
+                    "Responsive Design.pdf",
+                    "Color System.pdf",
+                    "Spacing Guide.pdf",
+                    "Layout Utilities.pdf",
+                    "Component Patterns.pdf",
+                    "Configuration Guide.pdf",
+                    "Performance Tips.pdf",
+                    "Advanced Techniques.pdf"
+                ],
+                questions: [
+                    "What is utility-first CSS approach?",
+                    "How do you customize Tailwind configuration?",
+                    "Explain Tailwind responsive design",
+                    "What are Tailwind color utilities?",
+                    "How do you create custom components?",
+                    "Explain Tailwind spacing system",
+                    "What are Tailwind state variants?",
+                    "How do you optimize Tailwind builds?",
+                    "What are the benefits of Tailwind CSS?",
+                    "How do you migrate from Bootstrap to Tailwind?"
+                ]
+            },
+            react: {
+                title: "React Development",
+                description: "Build dynamic user interfaces with React library",
+                icon: "fab fa-react",
+                lectures: [
+                    "React Introduction",
+                    "Components and JSX",
+                    "Props and State",
+                    "Event Handling",
+                    "Lifecycle Methods",
+                    "React Hooks",
+                    "Context API",
+                    "Routing with React Router",
+                    "State Management",
+                    "Testing React Applications"
+                ],
+                notes: [
+                    "React Fundamentals.pdf",
+                    "Component Architecture.pdf",
+                    "Props and State Guide.pdf",
+                    "Event Handling.pdf",
+                    "Lifecycle Methods.pdf",
+                    "React Hooks Guide.pdf",
+                    "Context API Tutorial.pdf",
+                    "React Router Guide.pdf",
+                    "State Management.pdf",
+                    "Testing Guide.pdf"
+                ],
+                questions: [
+                    "What is React and its key features?",
+                    "Explain the difference between props and state",
+                    "How do React Hooks work?",
+                    "What is the Virtual DOM?",
+                    "How do you handle forms in React?",
+                    "Explain React component lifecycle",
+                    "What is Context API used for?",
+                    "How do you implement routing in React?",
+                    "What are the best practices for React?",
+                    "How do you test React components?"
+                ]
+            },
+            ml: {
+                title: "Machine Learning",
+                description: "Learn AI and machine learning algorithms for data analysis",
+                icon: "fas fa-robot",
+                lectures: [
+                    "Introduction to Machine Learning",
+                    "Python for ML",
+                    "Data Preprocessing",
+                    "Supervised Learning",
+                    "Unsupervised Learning",
+                    "Neural Networks",
+                    "Deep Learning",
+                    "Model Evaluation",
+                    "Feature Engineering",
+                    "ML Project Pipeline"
+                ],
+                notes: [
+                    "ML Fundamentals.pdf",
+                    "Python ML Libraries.pdf",
+                    "Data Preprocessing Guide.pdf",
+                    "Supervised Learning.pdf",
+                    "Unsupervised Learning.pdf",
+                    "Neural Networks.pdf",
+                    "Deep Learning Guide.pdf",
+                    "Model Evaluation.pdf",
+                    "Feature Engineering.pdf",
+                    "ML Pipeline Guide.pdf"
+                ],
+                questions: [
+                    "What is machine learning and its types?",
+                    "Explain the difference between supervised and unsupervised learning",
+                    "How do you preprocess data for ML?",
+                    "What are neural networks?",
+                    "How do you evaluate ML models?",
+                    "Explain feature engineering techniques",
+                    "What is overfitting and how to prevent it?",
+                    "How do you choose the right algorithm?",
+                    "What are the steps in ML pipeline?",
+                    "How do you deploy ML models?"
+                ]
+            },
+            datascience: {
+                title: "Data Science",
+                description: "Extract insights from data using scientific methods and tools",
+                icon: "fas fa-chart-bar",
+                lectures: [
+                    "Data Science Introduction",
+                    "Python for Data Science",
+                    "Data Collection and Cleaning",
+                    "Exploratory Data Analysis",
+                    "Statistical Analysis",
+                    "Data Visualization",
+                    "Machine Learning for Data Science",
+                    "Big Data Technologies",
+                    "Data Science Tools",
+                    "Data Science Project Lifecycle"
+                ],
+                notes: [
+                    "Data Science Overview.pdf",
+                    "Python Data Libraries.pdf",
+                    "Data Cleaning Guide.pdf",
+                    "EDA Techniques.pdf",
+                    "Statistical Methods.pdf",
+                    "Visualization Tools.pdf",
+                    "ML for Data Science.pdf",
+                    "Big Data Guide.pdf",
+                    "Data Science Tools.pdf",
+                    "Project Lifecycle.pdf"
+                ],
+                questions: [
+                    "What is data science and its applications?",
+                    "Explain the data science process",
+                    "How do you clean and preprocess data?",
+                    "What are the key data visualization techniques?",
+                    "How do you perform exploratory data analysis?",
+                    "Explain statistical concepts in data science",
+                    "What are the differences between data science and ML?",
+                    "How do you handle big data?",
+                    "What tools are essential for data science?",
+                    "How do you present data science findings?"
+                ]
+            },
+            programming: {
+                title: "Programming Languages",
+                description: "Master multiple programming languages: Java, Python, C++, C, Kotlin, SQL",
+                icon: "fas fa-laptop-code",
+                lectures: [
+                    "Programming Fundamentals",
+                    "Java Programming",
+                    "Python Programming",
+                    "C++ Programming",
+                    "C Programming",
+                    "Kotlin Programming",
+                    "SQL Database Programming",
+                    "Object-Oriented Programming",
+                    "Functional Programming",
+                    "Programming Best Practices"
+                ],
+                notes: [
+                    "Programming Basics.pdf",
+                    "Java Complete Guide.pdf",
+                    "Python Tutorial.pdf",
+                    "C++ Reference.pdf",
+                    "C Programming Guide.pdf",
+                    "Kotlin Documentation.pdf",
+                    "SQL Handbook.pdf",
+                    "OOP Concepts.pdf",
+                    "Functional Programming.pdf",
+                    "Best Practices Guide.pdf"
+                ],
+                questions: [
+                    "What are the key programming paradigms?",
+                    "Explain object-oriented programming concepts",
+                    "How do you handle memory management in C++?",
+                    "What are the advantages of Python?",
+                    "How do you implement multithreading in Java?",
+                    "Explain SQL query optimization",
+                    "What are the features of Kotlin?",
+                    "How do you debug programs effectively?",
+                    "What are programming design patterns?",
+                    "How do you write maintainable code?"
+                ]
+            }
+        };
+
+        // Current course and lecture tracking
+        let currentCourse = null;
+        let currentLecture = 0;
+
+        // Simple and direct event handling
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log('🚀 LearnHub initialized!');
+
+            // Handle all button clicks using event delegation
+            document.addEventListener('click', function (e) {
+                console.log('Click detected on:', e.target);
+
+                // Handle View Details buttons
+                if (e.target.classList.contains('course-btn')) {
+                    console.log('✅ View Details clicked');
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    const card = e.target.closest('.course-card');
+                    if (card) {
+                        const courseType = card.getAttribute('data-course');
+                        console.log('📚 Showing modal for course:', courseType);
+                        showCourseModal(courseType);
+                    }
+                }
+
+                // Handle Start Course buttons
+                if (e.target.classList.contains('start-course-btn')) {
+                    console.log('✅ Start Course clicked');
+                    e.preventDefault();
+                    e.stopPropagation();
+
+                    const courseType = e.target.getAttribute('data-course');
+                    console.log('🎬 Starting course:', courseType);
+                    startCourseDirectly(courseType);
+                }
+
+                // Handle modal close
+                if (e.target.classList.contains('close')) {
+                    console.log('❌ Closing modal');
+                    closeModal();
+                }
+
+                // Handle close video
+                if (e.target.id === 'closeVideoBtn' || e.target.closest('#closeVideoBtn')) {
+                    console.log('❌ Close video');
+                    closeVideo();
+                }
+
+                // Handle modal start course button
+                if (e.target.id === 'startCourseBtn') {
+                    console.log('🎬 Start course from modal');
+                    startCourseFromModal();
+                }
+            });
+
+            // Handle lecture clicks
+            document.addEventListener('click', function (e) {
+                if (e.target.closest('#lectureList li')) {
+                    const li = e.target.closest('li');
+                    const index = Array.from(li.parentNode.children).indexOf(li);
+                    console.log('📖 Lecture clicked:', index);
+                    selectLecture(index);
+                }
+            });
+
+            // Handle CTA button
+            const ctaBtn = document.querySelector('.cta-button');
+            if (ctaBtn) {
+                ctaBtn.addEventListener('click', function () {
+                    document.getElementById('courses').scrollIntoView({ behavior: 'smooth' });
+                });
+            }
+
+            // Handle navigation links
+            document.querySelectorAll('nav a').forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId.startsWith('#')) {
+                        const targetElement = document.querySelector(targetId);
+                        if (targetElement) {
+                            targetElement.scrollIntoView({ behavior: 'smooth' });
+                        }
+                    }
+                });
+            });
+
+            console.log('✅ All event listeners attached successfully!');
+        });
+
+        // Show course modal
+        function showCourseModal(courseType) {
+            console.log('📚 showCourseModal called with:', courseType);
+            const course = courseData[courseType];
+            if (!course) {
+                console.error('❌ Course not found:', courseType);
+                return;
+            }
+
+            console.log('✅ Course found:', course.title);
+
+            // Update modal content
+            const modalIcon = document.getElementById('modalIcon');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDescription = document.getElementById('modalDescription');
+
+            if (modalIcon) modalIcon.className = course.icon;
+            if (modalTitle) modalTitle.textContent = course.title;
+            if (modalDescription) modalDescription.textContent = course.description;
+
+            // Populate lectures
+            const lecturesList = document.getElementById('lecturesList');
+            if (lecturesList) {
+                lecturesList.innerHTML = '';
+                course.lectures.forEach(lecture => {
+                    const li = document.createElement('li');
+                    li.textContent = lecture;
+                    lecturesList.appendChild(li);
+                });
+            }
+
+            // Populate notes
+            const notesList = document.getElementById('notesList');
+            if (notesList) {
+                notesList.innerHTML = '';
+                course.notes.forEach(note => {
+                    const li = document.createElement('li');
+                    li.textContent = note;
+                    notesList.appendChild(li);
+                });
+            }
+
+            // Populate questions
+            const questionsList = document.getElementById('questionsList');
+            if (questionsList) {
+                questionsList.innerHTML = '';
+                course.questions.forEach(question => {
+                    const li = document.createElement('li');
+                    li.textContent = question;
+                    questionsList.appendChild(li);
+                });
+            }
+
+            // Store current course
+            currentCourse = courseType;
+
+            // Show modal
+            const modal = document.getElementById('courseModal');
+            if (modal) {
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+                console.log('✅ Modal should be visible now');
+            }
+        }
+
+        // Close modal
+        function closeModal() {
+            const modal = document.getElementById('courseModal');
+            if (modal) {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                console.log('✅ Modal closed');
+            }
+        }
+
+        // Start course directly from card
+        function startCourseDirectly(courseType) {
+            console.log('🎬 startCourseDirectly called with:', courseType);
+            currentCourse = courseType;
+            const course = courseData[courseType];
+            if (!course) {
+                console.error('❌ Course not found:', courseType);
+                return;
+            }
+
+            console.log('✅ Starting course:', course.title);
+
+            // Update video page title
+            const currentCourseTitle = document.getElementById('currentCourseTitle');
+            if (currentCourseTitle) {
+                currentCourseTitle.textContent = course.title;
+            }
+
+            // Populate lecture list
+            const lectureList = document.getElementById('lectureList');
+            if (lectureList) {
+                lectureList.innerHTML = '';
+                course.lectures.forEach((lecture, index) => {
+                    const li = document.createElement('li');
+                    li.textContent = `${index + 1}. ${lecture}`;
+                    lectureList.appendChild(li);
+                });
+            }
+
+            // Show video section
+            const videoSection = document.getElementById('videoSection');
+            if (videoSection) {
+                videoSection.style.display = 'block';
+                console.log('✅ Video section should be visible now');
+
+                // Scroll to video section
+                videoSection.scrollIntoView({ behavior: 'smooth' });
+            }
+
+            // Reset to first lecture
+            selectLecture(0);
+        }
+
+        // Start course from modal
+        function startCourseFromModal() {
+            if (!currentCourse) return;
+
+            // Close modal first
+            closeModal();
+
+            // Start course
+            startCourseDirectly(currentCourse);
+        }
+
+        // Select lecture
+        function selectLecture(index) {
+            if (!currentCourse) return;
+
+            const course = courseData[currentCourse];
+            const lecture = course.lectures[index];
+
+            console.log('📖 Selecting lecture:', lecture);
+
+            // Update active lecture in sidebar
+            const lectureList = document.getElementById('lectureList');
+            if (lectureList) {
+                const lectureItems = lectureList.querySelectorAll('li');
+                lectureItems.forEach((item, i) => {
+                    item.classList.toggle('active', i === index);
+                });
+            }
+
+            // Update video content
+            const currentLectureTitle = document.getElementById('currentLectureTitle');
+            const currentLectureDescription = document.getElementById('currentLectureDescription');
+
+            if (currentLectureTitle) {
+                currentLectureTitle.textContent = lecture;
+            }
+            if (currentLectureDescription) {
+                currentLectureDescription.textContent = `This lecture covers the fundamentals of ${lecture.toLowerCase()}. Watch the video to learn more about this topic.`;
+            }
+
+            // Load video for this lecture
+            const videoPlayer = document.getElementById('videoPlayer');
+            if (videoPlayer) {
+                const videoUrl = videoUrls[currentCourse][index];
+                if (videoUrl) {
+                    videoPlayer.src = videoUrl;
+                    videoPlayer.style.display = 'block';
+                    videoPlayer.load();
+                    console.log('🎥 Video loaded:', videoUrl);
+                }
+            }
+
+            // Update current lecture
+            currentLecture = index;
+        }
+
+        // Close video
+        function closeVideo() {
+            const videoSection = document.getElementById('videoSection');
+            if (videoSection) {
+                videoSection.style.display = 'none';
+                console.log('✅ Video closed');
+            }
+
+            // Pause video
+            const videoPlayer = document.getElementById('videoPlayer');
+            if (videoPlayer) {
+                videoPlayer.pause();
+            }
+
+            // Scroll to courses section
+            const coursesSection = document.getElementById('courses');
+            if (coursesSection) {
+                coursesSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // Add scroll animations
+        function addScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animation = 'fadeInUp 0.8s ease forwards';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe course cards
+            document.querySelectorAll('.course-card').forEach(card => {
+                observer.observe(card);
+            });
+
+            // Observe section title
+            const sectionTitle = document.querySelector('.section-title');
+            if (sectionTitle) {
+                observer.observe(sectionTitle);
+            }
+        }
+
+        // Initialize scroll animations
+        document.addEventListener('DOMContentLoaded', function () {
+            addScrollAnimations();
+        });
+
+        // Add some interactive effects
+        document.addEventListener('mousemove', function (e) {
+            const cards = document.querySelectorAll('.course-card');
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                if (x >= 0 && x <= rect.width && y >= 0 && y <= rect.height) {
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = (y - centerY) / 10;
+                    const rotateY = (centerX - x) / 10;
+
+                    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
+                } else {
+                    card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0px)';
+                }
+            });
+        });
+
+        // Add loading animation for course cards
+        window.addEventListener('load', function () {
+            const cards = document.querySelectorAll('.course-card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(30px)';
+                    card.style.transition = 'all 0.6s ease';
+
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 100);
+                }, index * 100);
+            });
+        });
+
+        // Add keyboard navigation
+        document.addEventListener('keydown', function (e) {
+            const modal = document.getElementById('courseModal');
+            const videoPage = document.getElementById('videoPage');
+
+            if (modal && modal.style.display === 'block') {
+                if (e.key === 'Escape') {
+                    closeModal();
+                }
+            }
+
+            const videoSection = document.getElementById('videoSection');
+            if (videoSection && videoSection.style.display === 'block') {
+                if (e.key === 'Escape') {
+                    closeVideo();
+                }
+
+                // Arrow key navigation for lectures
+                if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    const lectureList = document.getElementById('lectureList');
+                    if (lectureList) {
+                        const lectures = lectureList.querySelectorAll('li');
+                        const currentIndex = Array.from(lectures).findIndex(li => li.classList.contains('active'));
+
+                        let newIndex = currentIndex;
+                        if (e.key === 'ArrowDown' && currentIndex < lectures.length - 1) {
+                            newIndex = currentIndex + 1;
+                        } else if (e.key === 'ArrowUp' && currentIndex > 0) {
+                            newIndex = currentIndex - 1;
+                        }
+
+                        if (newIndex !== currentIndex) {
+                            selectLecture(newIndex);
+                        }
+                    }
+                }
+            }
+        });
+
+        console.log('🎉 LearnHub JavaScript loaded successfully!');
+    </script>
+</body>
+
+</html>

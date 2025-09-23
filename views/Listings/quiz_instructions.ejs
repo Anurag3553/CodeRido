@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <%= certificationName %> Certification
+    </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #1a4d85;
+        }
+
+        form {
+            margin-top: 30px;
+        }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 12px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            padding: 14px 20px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .instructions {
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>
+            <%= certificationName %> Certification
+        </h1>
+        <p>To begin, please enter your name. Your name will appear on the certificate if you pass.</p>
+        <form action="/start-quiz" method="post">
+            <input type="hidden" name="certificationName" value="<%= certificationName %>">
+            <input type="text" name="userName" placeholder="Enter your full name" required>
+            <div class="instructions">
+                <h3>Instructions:</h3>
+                <ul>
+                    <li>The quiz consists of 10 questions.</li>
+                    <li>You must answer at least 6 questions correctly to pass.</li>
+                    <li>The questions include theory, code dry-runs, and multiple-choice.</li>
+                    <li>You will be given one question at a time.</li>
+                </ul>
+            </div>
+            <button type="submit">Start Quiz</button>
+            <button><a style="text-decoration: none; color: #f4f7f6;" href="/CodeRido/certificate">Quit</a></button>
+            
+        </form>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<% layout("/Layout/boilerplate.ejs") %>
+
+    <body>
+
+        <div class="Ai-content">
+            <div class="container">
+                <h1>AI Mock Interviewer 🤖</h1>
+                <p>Prepare for your next job interview with a personalized AI coach.</p>
+                <form id="interview-form" action="/start-interview" method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="jobProfile">Job Profile:</label>
+                        <input type="text" id="jobProfile" name="jobProfile" placeholder="e.g., Full-Stack Developer"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="jobRequirements">Job Requirements (comma-separated):</label>
+                        <textarea id="jobRequirements" name="jobRequirements" rows="3"
+                            placeholder="e.g., JavaScript, React, Node.js, MongoDB" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="timeDuration">Interview Time (in minutes):</label>
+                        <input type="number" id="timeDuration" name="timeDuration" value="30" min="5" max="60" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="resume">Upload Resume (PDF):</label>
+                        <input type="file" id="resume" name="resume" accept=".pdf">
+                    </div>
+                    <button type="submit">Start Interview</button>
+                </form>
+            </div>
+        </div>
+    </body>

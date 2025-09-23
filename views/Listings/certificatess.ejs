@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate of Completion</title>
+    <style>
+        /* This font rule is optional and will only work if you provide the font file */
+        @font-face {
+            font-family: 'Times New Roman';
+            src: url('/fonts/Times_New_Roman.ttf') format('truetype');
+        }
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background-color: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow: hidden; /* Prevents scrollbars on small screens */
+        }
+        .certificate-container {
+            width: 1000px;
+            height: 700px;
+            background-image: url('/images/CCERT.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2); /* Adds a subtle shadow for depth */
+        }
+        .recipient-name {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 52px; /* Slightly larger for better emphasis */
+            font-weight: bold;
+            color: #a05a2c;
+            text-align: center;
+            margin-top: -60px;
+            text-transform: capitalize; /* Capitalizes first letter of each word */
+        }
+        .certification-text {
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 24px;
+            color: #333;
+            text-align: center;
+            width: 80%;
+            margin-top: 10px;
+        }
+        .date-signature {
+            position: absolute;
+            bottom: 175px;
+            left: 200px;
+            font-size: 18px;
+            color: #333;
+        }
+        .instructor-name {
+            position: absolute;
+            bottom: 175px;
+            right: 200px;
+            font-size: 18px;
+            color: #333;
+        }
+        .download-btn {
+            position: fixed; /* Use fixed for it to stay on top */
+            top: 20px;
+            right: 20px;
+            padding: 12px 24px; /* Slightly larger padding */
+            background-color: #1a4d85;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            font-family: Arial, sans-serif;
+            z-index: 10;
+            transition: background-color 0.3s;
+        }
+        .download-btn:hover {
+            background-color: #153c69; /* Darker shade on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="certificate-container">
+        <h3 class="recipient-name"><%= userName %></h3>
+        <p class="certification-text">has successfully completed the training programme requirement for **<%= certificationName %>**.</p>
+        <p class="date-signature"><%= new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) %><br>DATE</p>
+        <p class="instructor-name">Anurag Yadav<br>INSTRUCTOR</p>
+    </div>
+    <button class="download-btn" onclick="downloadCertificate()">Download as Image</button>
+    <a style="margin-right: 150px; font-size: 12px; text-decoration: none;" class="download-btn" href="/CodeRido/certificate">Go to Dashboard</a>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+        function downloadCertificate() {
+            const certificateContainer = document.querySelector('.certificate-container');
+            const downloadButton = document.querySelector('.download-btn');
+            
+            // Hide the download button before taking the screenshot
+            downloadButton.style.display = 'none';
+
+            // Use a timeout to ensure the DOM has re-rendered after hiding the button
+            setTimeout(() => {
+                html2canvas(certificateContainer, {
+                    allowTaint: true,
+                    useCORS: true,
+                    scale: 2 // Increase scale for higher resolution download
+                }).then(function(canvas) {
+                    const link = document.createElement('a');
+                    link.href = canvas.toDataURL('image/png');
+                    link.download = '<%= userName.replace(/ /g, "_") %>_<%= certificationName.replace(/ /g, "_") %>_Certificate.png';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+
+                    // Show the download button again
+                    downloadButton.style.display = 'block';
+                });
+            }, 100); // 100ms delay
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,418 @@
+<% layout("/Layout/boilerplate.ejs") %>
+
+
+        <div class="main-content">
+            <div class="content1">
+                <div class="line">
+                    <h2><i>Code, Grow, and Collaborate with a Strong coding circle</i></h2>
+                </div>
+            </div>
+            <div class="days">
+                <div id="app" class="app-container">
+
+                    <!-- Header Bar -->
+                    <div class="header-bar">
+
+                        <!-- Countdown Timer -->
+                        <p id="countdown-text" class="countdown-text"></p>
+
+                        <!-- Progress Line and Flag -->
+                        <div class="progress-line-container">
+                            <div class="progress-line"></div>
+                            <div id="progress-flag" class="progress-flag">
+                                <span class="text-lg" style="font-size: 30px;">🏃🏿‍♂️‍➡️</span>
+                            </div>
+                            <!-- Icons for aesthetic -->
+                            <span
+                                style="position: absolute; top: 50%; left: -0.5rem; transform: translateY(-50%); font-size: 1.125rem;"></span>
+                            <span
+                                style="position: absolute; top: 50%; right: -0.5rem; transform: translateY(-50%); font-size: 1.125rem;">📍</span>
+                        </div>
+
+                        <!-- Month & Year Icon / Badge Container -->
+                        <div id="month-year-badge-container" class="month-year-icon-container">
+                            <div class="radial-gradient-overlay"></div>
+                            <div id="month-year-text-container" class="month-year-text-container">
+                                <p id="month-name">MONTH</p>
+                                <p id="year-name">YEAR</p>
+                            </div>
+                            <div id="badge-img-container" class="badge-image-container">
+                                <img id="badge-img" src="image_0164fd.png" alt="Monthly Challenge Badge"
+                                    class="badge-image">
+                                <!-- Download icon SVG for the badge -->
+                                <svg id="download-icon" class="download-icon" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24" fill="white">
+                                    <path
+                                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 13l-4-4h3V7h2v4h3l-4 4z" />
+                                </svg>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Days of the Month Grid -->
+                    <div id="calendar-grid" class="calendar-grid">
+                        <!-- Day buttons will be dynamically inserted here -->
+                    </div>
+
+                    <!-- Pop-up for Clicked Day Info -->
+                    <div id="info-modal" class="modal-overlay">
+                        <div class="modal-content">
+                            <h3>Day Information</h3>
+                            <p id="day-info-text"></p>
+                            <button id="close-info-modal" class="close-modal">
+                                Close
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Pop-up for Badge Card -->
+                    <div id="badge-card-modal" class="modal-overlay">
+                        <div class="modal-content badge-card-modal-content">
+                            <p id="badge-card-title"></p>
+                            <img style="margin-top: -40px;" src="image_0106e1.png" alt="Badge Card">
+                            <p>Congratulations on completing the challenge!</p>
+                            <div style="margin-top: -30px;" class="badge-card-modal-buttons">
+                                <!--
+                        The 'download' attribute on the <a> tag attempts to trigger a download.
+                        This may be blocked by some browsers when running the file locally.
+                        If it doesn't work, users can right-click the image and select "Save Image As".
+                    -->
+                                <button id="download-badge-card">Download</button>
+                                <!--
+                        This button opens a LinkedIn share URL with a pre-filled text message.
+                        Social media sites cannot access local images from your computer.
+                        Users must download the image first and then upload it manually
+                        when they create a post on LinkedIn.
+                    -->
+                                <button id="share-on-linkedin">Share Text on LinkedIn</button>
+                            </div>
+                            <button style="width: 30%;" id="close-badge-card-modal" class="close-modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="dsa">
+                <div class="dsa-head">
+                    <h3>DSA Problem's</h3>
+                </div>
+                <div class="problem">
+                    <div class="box" id="array">Array</div>
+                    <div class="box" id="recursion"
+                        style="color: brown; background-color: rgba(246, 6, 6, 0.3); border: 2px solid  brown; ">
+                        Recursion</div>
+                    <div class="box" id="Backtracking"
+                        style="color: blue; background-color: rgba(41, 2, 235, 0.3); border: 2px solid  blue; ">
+                        Backtracking</div>
+                    <div class="box" id="Linkedlist"
+                        style="color: rgb(255, 149, 0); background-color: rgb(255, 255, 0, 0.3); border: 2px solid rgb(255, 149, 0); ">
+                        LinkedList</div>
+                    <div class="box" id="Arrlist"
+                        style="color: black; background-color: rgb(0, 0, 0, 0.3); border: 2px solid  black; ">ArrayList
+                    </div>
+                    <div class="box" id="Stack"
+                        style="color: rgb(2, 82, 100); background-color: rgb(135, 206, 235,0.3); border: 2px solid  rgb(2, 82, 100); ">
+                        Stack</div>
+                    <div class="box" id="queue"
+                        style="color: green; background-color: rgb(0, 128, 0, 0.3); border: 2px solid  green; ">Queue
+                    </div>
+                    <div class="box" id="greedy"
+                        style="color: brown; background-color: rgb(209, 5, 73,0.3); border: 2px solid  brown; ">Greedy
+                    </div>
+                    <div class="box" id="binaryt"
+                        style="color: blue; background-color: rgba(41, 2, 235, 0.3); border: 2px solid  blue; ">Binary
+                        Tree</div>
+                    <div class="box" id="heap"
+                        style="color: rgb(255, 149, 0); background-color: rgb(255, 255, 0, 0.3); border: 2px solid rgb(255, 149, 0); ">
+                        Heap</div>
+                    <div class="box" id="hashing"
+                        style="color: black; background-color: rgb(0, 0, 0, 0.3); border: 2px solid  black; ">Hashing
+                    </div>
+                    <div class="box" id="graph"
+                        style="color: rgb(2, 82, 100); background-color: rgb(135, 206, 235,0.3); border: 2px solid  rgb(2, 82, 100); ">
+                        Graphs</div>
+                    <div class="box" id="segtre"
+                        style="color: green; background-color: rgb(0, 128, 0, 0.3); border: 2px solid  green; width: 150px;">
+                        Segment Tree</div>
+                    <div class="box" id="tptr"
+                        style="color: brown; background-color: rgba(246, 6, 6, 0.3); border: 2px solid  brown; width: 150px;">
+                        Two Pointers</div>
+                    <div class="box" id="slw"
+                        style="color: blue; background-color: rgba(41, 2, 235, 0.3); border: 2px solid  blue; width: 160px;">
+                        Sliding Window</div>
+                    <div class="box" id="string"
+                        style="color: rgb(255, 149, 0); background-color: rgb(255, 255, 0, 0.3); border: 2px solid rgb(255, 149, 0); ">
+                        String</div>
+                    <div class="box"
+                        style="color: rgb(2, 82, 100); background-color: rgb(135, 206, 235,0.3); border: 2px solid  rgb(2, 82, 100); ">
+                        String</div>
+                    <div class="box" id="dp"
+                        style="color: brown; background-color: rgba(246, 6, 6, 0.3); border: 2px solid  brown; ">DP
+                    </div>
+                    <div class="box"
+                        style="color: green; background-color: rgb(0, 128, 0, 0.3); border: 2px solid  green; ">String
+                    </div>
+                    <div class="box"
+                        style="color: brown; background-color: rgba(246, 6, 6, 0.3); border: 2px solid  brown; ">String
+                    </div>
+                    <div class="box"
+                        style="color: blue; background-color: rgba(41, 2, 235, 0.3); border: 2px solid  blue; ">String
+                    </div>
+                    <div class="box"
+                        style="color: rgb(255, 149, 0); background-color: rgb(255, 255, 0, 0.3); border: 2px solid rgb(255, 149, 0); ">
+                        String</div>
+                    <div class="box"
+                        style="color: black; background-color: rgb(0, 0, 0, 0.3); border: 2px solid  black; ">String
+                    </div>
+                    <div class="box"
+                        style="color: rgb(2, 82, 100); background-color: rgb(135, 206, 235,0.3); border: 2px solid  rgb(2, 82, 100); ">
+                        String</div>
+                    <div class="box"
+                        style="color: green; background-color: rgb(0, 128, 0, 0.3); border: 2px solid  green; ">String
+                    </div>
+                    <div class="box"
+                        style="color: brown; background-color: rgba(246, 6, 6, 0.3); border: 2px solid  brown; ">String
+                    </div>
+                </div>
+            </div>
+
+            <div class="trending">
+                <div class="trend-head">
+                    <!-- <h3>⚡️ Trending Companies Problem's</h3> -->
+                </div>
+
+            </div>
+        </div>
+        <script>
+        // All JavaScript logic for the app
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // Cache DOM elements
+            const monthYearEl = document.getElementById('month-name');
+            const yearNameEl = document.getElementById('year-name');
+            const countdownEl = document.getElementById('countdown-text');
+            const calendarGridEl = document.getElementById('calendar-grid');
+            const infoModalEl = document.getElementById('info-modal');
+            const dayInfoTextEl = document.getElementById('day-info-text');
+            const closeInfoModalBtn = document.getElementById('close-info-modal');
+            const progressFlagEl = document.getElementById('progress-flag');
+            const monthYearBadgeContainer = document.getElementById('month-year-badge-container');
+            const monthYearTextContainer = document.getElementById('month-year-text-container');
+            const badgeImgContainer = document.getElementById('badge-img-container');
+            const downloadIcon = document.getElementById('download-icon');
+
+            const badgeCardModalEl = document.getElementById('badge-card-modal');
+            const closeBadgeCardModalBtn = document.getElementById('close-badge-card-modal');
+            const downloadBadgeCardBtn = document.getElementById('download-badge-card');
+            const shareOnLinkedInBtn = document.getElementById('share-on-linkedin');
+            const badgeCardTitleEl = document.getElementById('badge-card-title');
+
+            // Global variables
+            let currentDate = new Date();
+            let leetCodeProblems = [];
+            let problemIndex = 0;
+            let clickedDays = JSON.parse(localStorage.getItem('clickedDays')) || {};
+
+            // Array of LeetCode problems to choose from
+            const allProblems = [
+                'https://leetcode.com/problems/two-sum/',
+                'https://leetcode.com/problems/add-two-numbers/',
+                'https://leetcode.com/problems/longest-substring-without-repeating-characters/',
+                'https://leetcode.com/problems/median-of-two-sorted-arrays/',
+                'https://leetcode.com/problems/longest-palindromic-substring/'
+            ];
+
+            // Fisher-Yates shuffle algorithm to randomize the problems
+            function shuffleArray(array) {
+                let currentIndex = array.length, randomIndex;
+                while (currentIndex != 0) {
+                    randomIndex = Math.floor(Math.random() * currentIndex);
+                    currentIndex--;
+                    [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+                }
+                return array;
+            }
+
+            // Function to open the next unique LeetCode problem
+            function openNextLeetCodeProblem() {
+                // If we've reached the end of the shuffled list, reshuffle and reset the index
+                if (problemIndex >= leetCodeProblems.length) {
+                    leetCodeProblems = shuffleArray([...allProblems]);
+                    problemIndex = 0;
+                }
+                const problemUrl = leetCodeProblems[problemIndex];
+                window.open(problemUrl, '_blank');
+                problemIndex++;
+            }
+
+            // Function to save clicked days to localStorage
+            function saveClickedDays() {
+                localStorage.setItem('clickedDays', JSON.stringify(clickedDays));
+            }
+
+            // Function to check if all days up to today of the current month have been clicked
+            function checkCurrentMonthCompletion() {
+                const now = new Date();
+                const monthKey = `${now.getFullYear()}-${now.getMonth() + 1}`;
+                let allDaysClicked = true;
+                for (let i = 1; i <= now.getDate(); i++) {
+                    const dayKey = `${monthKey}-${i}`;
+                    if (!clickedDays[dayKey]) {
+                        allDaysClicked = false;
+                        break;
+                    }
+                }
+                return allDaysClicked;
+            }
+
+            // Function to render the calendar grid for the current month
+            function renderCalendar() {
+                // Clear the previous grid
+                calendarGridEl.innerHTML = '';
+
+                // Get current date details
+                const today = currentDate.getDate();
+                const month = currentDate.getMonth();
+                const year = currentDate.getFullYear();
+                const monthName = currentDate.toLocaleDateString('default', { month: 'long' });
+                const numDaysInMonth = new Date(year, month + 1, 0).getDate();
+                const monthKey = `${year}-${month + 1}`;
+
+                // Update the month and year display in the badge
+                monthYearEl.textContent = monthName.toUpperCase();
+                yearNameEl.textContent = year;
+
+                // Check if the current month's challenge is complete and display the badge if so
+                if (checkCurrentMonthCompletion()) {
+                    monthYearTextContainer.style.display = 'none';
+                    badgeImgContainer.style.display = 'block';
+                } else {
+                    monthYearTextContainer.style.display = 'flex';
+                    badgeImgContainer.style.display = 'none';
+                }
+
+                // Create a document fragment to efficiently add elements to the DOM
+                const fragment = document.createDocumentFragment();
+
+                // Loop through each day of the month
+                for (let i = 1; i <= numDaysInMonth; i++) {
+                    const dayButton = document.createElement('button');
+                    dayButton.textContent = i;
+                    dayButton.classList.add('day-button');
+                    const dayKey = `${monthKey}-${i}`;
+
+                    // Check if the day is in the past, present, or future
+                    if (i <= today) {
+                        // Days up to and including today are clickable and redirect to LeetCode
+                        dayButton.classList.add('clickable');
+                        dayButton.addEventListener('click', () => {
+                            clickedDays[dayKey] = true;
+                            saveClickedDays();
+                            dayButton.classList.add('clicked');
+                            openNextLeetCodeProblem();
+                            renderCalendar(); // Re-render to show the badge if applicable
+                        });
+                        // Check if the day was already clicked
+                        if (clickedDays[dayKey]) {
+                            dayButton.classList.add('clicked');
+                        }
+                    } else {
+                        // Future days are disabled
+                        dayButton.classList.add('disabled');
+                    }
+
+                    if (i === today) {
+                        dayButton.classList.add('active-day');
+                    }
+                    fragment.appendChild(dayButton);
+                }
+                calendarGridEl.appendChild(fragment);
+            }
+
+            // Function to update the countdown and progress flag every second
+            function updateCountdown() {
+                const now = new Date();
+
+                // Calculate time remaining until midnight
+                const tomorrow = new Date(now);
+                tomorrow.setDate(now.getDate() + 1);
+                tomorrow.setHours(0, 0, 0, 0);
+
+                const timeRemaining = tomorrow.getTime() - now.getTime();
+                const numDaysInMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+
+                // Check if a new day has started
+                if (timeRemaining <= 1000) { // A small buffer to handle timing issues
+                    currentDate = new Date(); // Update the global date
+                    renderCalendar(); // Re-render the calendar for the new day
+                }
+
+                const hours = Math.floor(timeRemaining / (1000 * 60 * 60));
+                const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+                // Update the countdown text to match the requested format
+                countdownEl.textContent = `Day ${now.getDate()} ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')} left`;
+
+                // Update the flag position based on the current day
+                const progressPercentage = (now.getDate() / numDaysInMonth) * 100;
+                progressFlagEl.style.left = `${progressPercentage}%`;
+            }
+
+            // Function to show a modal with the day's information
+            function showDayInfo(day) {
+                const clickedDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
+                const dayName = clickedDate.toLocaleDateString('en-US', { weekday: 'long' });
+                const dateText = clickedDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+                dayInfoTextEl.textContent = `Day: ${dayName}\nDate: ${dateText}`;
+
+                // Make the modal visible
+                infoModalEl.style.display = 'flex';
+            }
+
+            // Close the modals
+            closeInfoModalBtn.addEventListener('click', () => {
+                infoModalEl.style.display = 'none';
+            });
+            closeBadgeCardModalBtn.addEventListener('click', () => {
+                badgeCardModalEl.style.display = 'none';
+            });
+
+            // Handle badge click to show the card modal
+            downloadIcon.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent the parent container's click event
+                badgeCardTitleEl.textContent = `Badge for ${currentDate.toLocaleDateString('default', { month: 'long' })} ${currentDate.getFullYear()}`;
+                badgeCardModalEl.style.display = 'flex';
+            });
+
+            // Handle badge card download
+            downloadBadgeCardBtn.addEventListener('click', () => {
+                const month = currentDate.toLocaleDateString('default', { month: 'long' });
+                const year = currentDate.getFullYear();
+
+                const a = document.createElement('a');
+                a.href = "image_0106e1.png";
+                a.download = `monthly_challenge_badge_${month.toLowerCase()}_${year}.png`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            });
+
+            // Handle sharing on LinkedIn
+            shareOnLinkedInBtn.addEventListener('click', () => {
+                const month = currentDate.toLocaleDateString('default', { month: 'long' });
+                const year = currentDate.getFullYear();
+                const linkedInShareUrl = `https://www.linkedin.com/feed/?shareActive=true&text=${encodeURIComponent(`I completed my daily coding challenge for ${month} ${year}! #codingchallenge #leetcode #programming`)}`;
+                window.open(linkedInShareUrl, '_blank');
+            });
+
+            // Initial setup: shuffle problems once and then render the calendar
+            leetCodeProblems = shuffleArray([...allProblems]);
+            renderCalendar();
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        });
+
+    </script>
