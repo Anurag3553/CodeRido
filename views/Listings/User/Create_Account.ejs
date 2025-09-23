@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create_Account_Page_@CodeRido</title>
+    <link rel="stylesheet" href="Create_Account.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        :root {
+            --bg-main: #C6E5E2;
+            --bg-white: #FFFFFF;
+            --bg-dark-section: #133C3E;
+
+            --text-main: #000000;
+            --text-sub: #6C757D;
+            --text-white: #FFFFFF;
+
+            --btn-border-selected: #1DBF73;
+            --icon-bg: #E8F7F5;
+            --icon-bg-hover: #D4F0EC;
+
+            --text-button: #212529;
+            --login-border: #000000;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            height: 100vh;
+        }
+
+        .main {
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            /* padding: 20px; */
+            align-items: center;
+            justify-content: space-evenly;
+        }
+
+        .main .left {
+            height: 90%;
+            width: 45%;
+            /* border: 1px solid black; */
+            border-radius: 10px;
+            background-image: linear-gradient(to bottom, #24d642, #1DBF73);
+            box-shadow:  0 0 10px white inset;   
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .main .left .one{
+            height: 15%;
+            width: 70%;
+            /* border: 1px solid white; */
+            font-size: 3rem;
+            color: #24d642;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+            border-radius: 100px;
+            box-shadow: 0 0 10px rgb(131, 130, 130) inset;
+        }
+
+        .main .left .one .line{
+            height: 35px;
+            width: 35px;
+            border: 2px solid black;
+            margin-left: 20px;
+            rotate: 45deg;
+            background-color: black;
+        }
+
+        .main .right {
+            height: 90%;
+            width: 45%;
+            /* border: 1px solid black; */
+            display: flex;
+            /* padding: 10px; */
+            align-items: center;
+            justify-content: space-evenly;
+        }
+
+        .main .right-content {
+            height: 90%;
+            width: 90%;
+            /* border: 1px solid black; */
+            display: flex;
+            flex-direction: column;
+            /* justify-content: space-evenly; */
+        }
+
+        .right-content .divs {
+            height: 20%;
+            width: 100%;
+            /* border: 1px solid black; */
+            display: flex;
+            flex-direction: column;
+            /* justify-content: space-evenly; */
+        }
+
+        .divs h2 {
+            font-size: 2rem;
+        }
+
+        .divs p {
+            margin-top: 15px;
+            color: gray;
+        }
+
+        .right-content .data {
+            height: 50%;
+            width: 100%;
+            /* border: 1px solid black; */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .data .name {
+            height: 30%;
+            width: 100%;
+            /* border: 1px solid black; */
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        .name input {
+            height: 20px;
+            width: 45%;
+            border-radius: 5px;
+            padding: 10px;
+            color: gray;
+            border: none;
+            font-size: 1.1rem;
+            box-shadow: 0 0 3px black;
+        }
+
+        .data #data {
+            height: 40%;
+            width: 100%;
+            /* border: 1px solid black; */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /* justify-content: space-evenly; */
+        }
+
+        #data .email {
+            height: 20px;
+            width: 94%;
+            border-radius: 5px;
+            border: none;
+            box-shadow: 0 0 3px black;
+            padding: 10px;
+            font-size: 1.1rem;
+        }
+
+        #data .password {
+            height: 20px;
+            width: 94%;
+            margin-top: 25px;
+            border-radius: 5px;
+            border: none;
+            box-shadow: 0 0 3px black;
+            padding: 10px;
+            font-size: 1.1rem;
+        }
+
+        .data .policy {
+            height: 20%;
+            width: 100%;
+            /* border: 1px solid black; */
+            display: flex;
+            align-items: center;
+
+        }
+
+        .policy #polic {
+            height: 30%;
+            width: 100%;
+            /* border: 1px solid black; */
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        #polic input {
+            height: 20px;
+            width: 20px;
+            margin-left: 20px;
+            border: 1px solid #1DBF73;
+        }
+
+        #polic label {
+            margin-left: 10px;
+        }
+
+        #polic a {
+            text-decoration: none;
+        }
+
+        .right-content .data .signupp{
+            height: 20%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .data .signupp .signup {
+            height: 50px;
+            width: 90%;
+            background-image: linear-gradient(to bottom, #24d642, #1DBF73);
+            border-radius: 10px;
+            border: none;
+            box-shadow: 0 0 5px white inset;
+            font-size: 1.3rem;
+            color: white;
+            margin-top: 20px;
+        }
+
+        .signupp .signup:hover {
+            opacity: 0.9;
+        }
+
+        .right-content .or {
+            height: 5%;
+            width: 100%;
+            /* border: 1px solid black; */
+            align-items: center;
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        .or div {
+            width: 45%;
+            border: 0.5px solid gray;
+        }
+
+        .right-content .social {
+            height: 25%;
+            width: 100%;
+            /* border: 3px solid black; */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .social .google {
+            height: 50%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            /* border: 1px solid black; */
+        }
+
+        .social .google a {
+            height: 45px;
+            width: 90%;
+            border: none;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: gray;
+            background-color: #E8F7F5;
+            box-shadow: 2px 4px 5px black;
+        }
+
+        .google i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+            color: black;
+        }
+
+        .social .sci {
+            height: 30%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+
+        .sci a {
+            height: 40px;
+            width: 25%;
+            border: none;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            margin-top: 10px;
+            box-shadow: 0px 2px 5px black;
+            font-size: 1.5rem;
+            color: black;
+            background-color: #E8F7F5;
+        }
+
+
+
+        .social p {
+            font-size: 14px;
+            text-decoration: none;
+            color: gray;
+            margin-top: 20px;
+        }
+
+        .social a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <div class="left">
+            <div class="one">
+                <h3>Code<span style="color: black;">Rido</span> </h3>
+                <div class="line"></div>
+            </div>
+        </div>
+        <div class="right">
+            <div class="right-content">
+                <div class="divs">
+                    <h2>Let's Code with us </h2>
+                    <h2>Create a CodeRido account</h2>
+                    <p><i>Code, Grow, and Collaborate with a Strong coding circle</i></p>
+                </div>
+                <form action="/CodeRido/SignUp" method="post" class="data">
+                    <div class="name">
+                        <input type="text" name="firstname" id="firstname" placeholder="First Name" required>
+                        <input type="text" name="username" id="username" placeholder="Username" required>
+                    </div>
+                    <div id="data">
+                        <input class="email" type="email" name="email" placeholder="Email" required>
+                        <input class="password" type="password" name="password" placeholder="Password" required>
+                    </div>
+                    <div class="policy">
+                        <div id="polic">
+                            <input type="checkbox" id="policy" required>
+                            <label for="policy">i agree to CodeRido's <a href="#">User Agrrement </a>and <a
+                                    href="#">Privacy Policy</a></label>
+                        </div>
+                    </div>
+                    <div class="signupp">
+                        <button class="signup">Sign up</button>
+                    </div>
+                </form>
+                <div class="or">
+                    <div></div>
+                    <p>or</p>
+                    <div></div>
+                </div>
+
+                <div class="social">
+                    <div class="google">
+                        <a href="#"><i class="fa-brands fa-google"></i>Continue with Google</a>
+                    </div>
+                    <div class="sci">
+                        <a href="#"><i class="fa-brands fa-github"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    </div>
+                    <p>Already have an account?<a class="login" href="/CodeRido/Login"> Log in</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="Create_Account.js"></script>
+</body>
+
+</html>
